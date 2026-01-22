@@ -1,0 +1,42 @@
+﻿@model Project
+
+@{
+    ViewData["Title"] = "Proje Güncelle";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<form method="post">
+
+    <input type="hidden" asp-for="ProjectId" />
+
+    <div class="form-group">
+        <label>Proje Görsel Url</label>
+        <input type="text" name="ImageURL" class="form-control" asp-for="ImageURL" />
+        <span asp-validation-for="ImageURL" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Proje Adı</label>
+        <input type="text" name="ProjectName" class="form-control" asp-for="ProjectName" />
+        <span asp-validation-for="ProjectName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Açıklama</label>
+        <textarea type="text" name="Description" class="form-control" asp-for="Description" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Github Url</label>
+        <input type="url" name="GithubURL" class="form-control" asp-for="GithubURL" />
+        <span asp-validation-for="GithubURL" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Kategori</label>
+        <select type="form-control" name="CategoryId" class="form-control" asp-for="CategoryId" asp-items="@ViewBag.categories">
+            <option disabled>Kategori Seçiniz</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Güncelle</button>
+
+</form>

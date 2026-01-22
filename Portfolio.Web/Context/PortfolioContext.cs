@@ -10,13 +10,16 @@ namespace Portfolio.Web.Context
             optionsBuilder.UseSqlServer("server=.; database=MyAcademyPortfolioDb; integrated security = true; trustserverCertificate=true;");
 
         }
-
         public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<UserMessage> UserMessages { get; set; }
+        public DbSet<ContactInfo> ContactInfos { get; set; }
 
     }
 }
