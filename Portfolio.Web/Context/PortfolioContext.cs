@@ -7,7 +7,7 @@ namespace Portfolio.Web.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=.; database=MyAcademyPortfolioDb; integrated security = true; trustserverCertificate=true;");
+            optionsBuilder.UseSqlServer("server=.; database=MyAcademyPortfolioDb; integrated security=true; trustserverCertificate=true;");
 
         }
         public DbSet<About> Abouts { get; set; }
@@ -20,6 +20,7 @@ namespace Portfolio.Web.Context
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<UserMessage> UserMessages { get; set; }
         public DbSet<ContactInfo> ContactInfos { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }
