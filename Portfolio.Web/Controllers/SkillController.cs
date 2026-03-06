@@ -39,6 +39,7 @@ namespace Portfolio.Web.Controllers
             return View(skill);
         }
 
+        [HttpPost]
         public IActionResult UpdateSkill(Skill skill) 
         {
             context.Skills.Update(skill);
