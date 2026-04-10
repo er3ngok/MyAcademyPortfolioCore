@@ -32,7 +32,7 @@
                         <form class="px-3">
                             <div class="form-group mb-0 d-flex align-items-center">
                                 <i data-feather="search"></i>
-                                <input type="search" class="form-control border-0 shadow-none" placeholder="Search here. . .">
+                                <input type="search" class="form-control border-0 shadow-none" placeholder="Buradan Ara. . .">
                             </div>
                         </form>
                     </div>
@@ -40,7 +40,7 @@
                 <li class="pc-h-item d-none d-md-inline-flex">
                     <form class="header-search">
                         <i data-feather="search" class="icon-search"></i>
-                        <input type="search" class="form-control" placeholder="Search here. . .">
+                        <input type="search" class="form-control" placeholder="Buradan Ara. . .">
                     </form>
                 </li>
             </ul>
@@ -56,68 +56,53 @@
                        aria-haspopup="false"
                        aria-expanded="false">
                         <i class="ti ti-mail"></i>
+                        @if (ViewBag.UnreadCount != null && ViewBag.UnreadCount > 0)
+                        {
+                            <span class="badge bg-danger rounded-pill">
+                                @ViewBag.UnreadCount
+                            </span>
+                        }
                     </a>
                     <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header d-flex align-items-center justify-content-between">
-                            <h5 class="m-0">Message</h5>
+                            <h5 class="m-0">Okunmamış Mesajlar</h5>
                             <a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-x text-danger"></i></a>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 215px)">
                             <div class="list-group list-group-flush w-100">
-                                <a class="list-group-item list-group-item-action">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img src="~/Mantis-Bootstrap-1.0.0/dist/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-                                        </div>
-                                        <div class="flex-grow-1 ms-1">
-                                            <span class="float-end text-muted">3:00 AM</span>
-                                            <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.</p>
-                                            <span class="text-muted">2 min ago</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="list-group-item list-group-item-action">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img src="~/Mantis-Bootstrap-1.0.0/dist/assets/images/user/avatar-1.jpg" alt="user-image" class="user-avtar">
-                                        </div>
-                                        <div class="flex-grow-1 ms-1">
-                                            <span class="float-end text-muted">6:00 PM</span>
-                                            <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
-                                            <span class="text-muted">5 August</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="list-group-item list-group-item-action">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img src="~/Mantis-Bootstrap-1.0.0/dist/assets/images/user/avatar-3.jpg" alt="user-image" class="user-avtar">
-                                        </div>
-                                        <div class="flex-grow-1 ms-1">
-                                            <span class="float-end text-muted">2:45 PM</span>
-                                            <p class="text-body mb-1"><b>There was a failure to your setup.</b></p>
-                                            <span class="text-muted">7 hours ago</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="list-group-item list-group-item-action">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img src="~/Mantis-Bootstrap-1.0.0/dist/assets/images/user/avatar-4.jpg" alt="user-image" class="user-avtar">
-                                        </div>
-                                        <div class="flex-grow-1 ms-1">
-                                            <span class="float-end text-muted">9:10 PM</span>
-                                            <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b> Meeting.</b></p>
-                                            <span class="text-muted">Daily scrum meeting time</span>
-                                        </div>
-                                    </div>
-                                </a>
+                                @if (ViewBag.UnreadMessages != null)
+                                {
+                                    foreach (var msg in (List<UserMessage>)ViewBag.UnreadMessages)
+                                    {
+                                        <a class="list-group-item list-group-item-action"
+                                           href="javascript:void(0)"
+                                           onclick="openMessage('/Message/ReadMessage/@msg.UserMessageId')">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <img src="~/Mantis-Bootstrap-1.0.0/dist/assets/images/user/avatar-2.jpg"
+                                                         alt="user-image" class="user-avtar">
+                                                </div>
+                                                <div class="flex-grow-1 ms-1">
+                                                    <p class="text-body mb-1"><b>@msg.Name</b> → @msg.Subject</p>
+                                                    <span class="text-muted">
+                                                        @msg.Message.Substring(0, Math.Min(30, msg.Message.Length))...
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="text-center text-muted m-2">Okunmamış mesaj yok</p>
+                                }
+
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="text-center py-2">
-                            <a href="#!" class="link-primary">View all</a>
+                            <a href="/Message/Index/" class="link-primary">Tümünü Göster</a>
                         </div>
                     </div>
                 </li>
@@ -140,7 +125,7 @@
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="mb-1">@ViewBag.UserName</h6>
-                                    <span>UI/UX Designer</span>
+                                    <span>Full Stack Software Developer</span>
                                 </div>
                                 <a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
                             </div>
@@ -155,7 +140,7 @@
                                         role="tab"
                                         aria-controls="drp-tab-1"
                                         aria-selected="true">
-                                    <i class="ti ti-user"></i> Profile
+                                    <i class="ti ti-user"></i> Profil
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -173,7 +158,7 @@
                         </ul>
                         <div class="tab-content" id="mysrpTabContent">
                             <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
-                                <a href="#!" class="dropdown-item">
+                                <a href="/Account/Edit/" class="dropdown-item">
                                     <i class="ti ti-edit-circle"></i>
                                     <span>Profili Düzenle</span>
                                 </a>
