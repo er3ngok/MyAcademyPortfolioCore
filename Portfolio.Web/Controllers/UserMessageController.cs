@@ -18,9 +18,9 @@ namespace Portfolio.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUserMessage(UserMessage message)
+        public IActionResult CreateUserMessage(UserMessage userMessage)
         {
-            context.UserMessages.Add(message);
+            context.UserMessages.Add(userMessage);
             context.SaveChanges();
             return RedirectToAction("Index");
         }

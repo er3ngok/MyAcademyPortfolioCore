@@ -17,6 +17,7 @@ namespace Portfolio.Web.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult CreateTestimonial(Testimonial testimonial)
         {
             context.Testimonials.Add(testimonial);

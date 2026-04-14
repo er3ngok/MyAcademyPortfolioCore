@@ -1,51 +1,43 @@
-﻿@model List<About>
-
-@*
-    Default About Section
-*@
+﻿@model About
 
 <section id="about" class="about section">
-
-    <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <h2>Hakkımda</h2>
         <p>Hakkımda daha fazla bilgi</p>
-    </div><!-- End Section Title -->
+    </div>
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            <div class="row gy-4 justify-content-center">
+            <div class="row gy-4 justify-content-center mb-5">
                 <div class="col-lg-4">
-                    <img src="@item.ImageURL" class="img-fluid" alt="">
+                    <img src="@Model.ImageURL" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-8 content">
-                    <h2>@item.Title</h2>
+                    <h2>@Model.Title</h2>
                     <p class="fst-italic py-3">
-                        @item.Description
+                        @Model.Description
                     </p>
                     <div class="row">
                         <div class="col-lg-6">
                             <ul>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>@item.BirthDate.ToString("dd MMM yyy")</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>@item.WebSite</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>@item.PhoneNumber</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>@item.City</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>@Model.BirthDate.ToString("dd MMM yyyy")</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>@Model.WebSite</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>@Model.PhoneNumber</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>@Model.City</span></li>
                             </ul>
                         </div>
                         <div class="col-lg-6">
                             <ul>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>@item.Graduation</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>@item.Email</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>@item.IsAvailable</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>@ViewBag.Age</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>@Model.Graduation</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>@Model.Email</span></li>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>@Model.IsAvailable</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         }
-
     </div>
-
 </section>

@@ -7,8 +7,8 @@
 
 <!-- [Head] start -->
 @await Component.InvokeAsync("_AdminLayoutHeadComponent")
-
 <!-- [Head] end -->
+
 <!-- [Body] Start -->
 
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
@@ -19,10 +19,12 @@
         </div>
     </div>
     <!-- [ Pre-loader ] End -->
+
     <!-- [ Sidebar Menu ] start -->
     @await Component.InvokeAsync("_AdminLayoutSidebarComponent")
 
     <!-- [ Sidebar Menu ] end -->
+
     <!-- [ Header Topbar ] start -->
     @await Component.InvokeAsync("_AdminLayoutTopbarComponent")
 
@@ -33,6 +35,7 @@
             <!-- [ breadcrumb ] start -->
             @await Component.InvokeAsync("_AdminLayoutContentComponent")
             <!-- [ breadcrumb ] end -->
+
             <!-- [ Main Content ] start -->
             @RenderBody()
 
